@@ -2,19 +2,30 @@ pipeline {
     agent any
 
     stages {
-        stage('Installing dependencies in a virtual environment') {
+        stage('Creating a virtual environment with anaconda') {
             steps {
                 echo "Current workspace is ${env.WORKSPACE}"
-                sh "python3 --version"
-                sh "which python3"
-                sh "python3 -m venv ${env.WORKSPACE}/build_venv"
-                sh "source ${env.WORKSPACE}/build_venv/bin/activate"
-                sh "python --version"
-                sh "which ${env.WORKSPACE}/build_venv/bin/python"
-                sh "pip install -r requirements.txt"
-                sh "python setup.py develop"
+                sh "conda --version"
+                sh "which conda"
+                sh "conda env create --name jenkins_test --file environment.yaml"
+
+                //sh "source ${env.WORKSPACE}/build_venv/bin/activate"
+                //sh "python --version" // python is not found
+                //sh "which ${env.WORKSPACE}/build_venv/bin/python"
+                //sh "pip install -r requirements.txt"
+                //sh "python setup.py develop"
             }
         }
+
+        stage('Test anaconda environment') {
+            steps {
+                sh "conda activate jenkins_test"
+                sh "python --version"
+                sh "which python"
+                sh "conda list"
+            }
+        }
+
 
         stage('Test') {
             steps {
