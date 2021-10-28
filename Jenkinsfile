@@ -26,7 +26,7 @@ pipeline {
         stage('Store artifacts') { 
             steps {
                 junit(testResults: "${env.WORKSPACE}/SampleProject/testing/junit_report.xml", allowEmptyResults: true)
-                archiveArtifacts artifacts: "${env.WORKSPACE}/SampleProject/testing/coverage_report.xml"
+                archiveArtifacts artifacts: "SampleProject/testing/coverage_report.xml"
             }
         }
     
