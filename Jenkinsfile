@@ -1,3 +1,5 @@
+def PYTHON_INTERPRETER = env.WORKSPACE + "/build_venv/bin/python"
+
 pipeline {
     agent any
 
@@ -9,8 +11,8 @@ pipeline {
                 sh "which python3"
                 sh "python3 -m venv ${env.WORKSPACE}/build_venv"
                 sh ". ${env.WORKSPACE}/build_venv/bin/activate"
-                sh "python --version"
-                sh "which python"
+                sh "${PYTHON_INTERPRETER} --version"
+                sh "which ${PYTHON_INTERPRETER}"
             }
         }
         stage('Test') {
