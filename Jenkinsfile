@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('Dependencies') {
             steps {
-                sh "python --version"
+                echo "Current workspace is ${env.WORKSPACE}"
+                sh "python3 --version"
+                //sh "python3 -m venv /path/to/new/virtual/environment"
+
             }
         }
         stage('Test') {
