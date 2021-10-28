@@ -18,7 +18,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing....'
-                sh "source SampleProject/testing/start_test.sh"
+                sh "source SampleProject/testing/start_test.sh ${env.WORKSPACE}/build_venv"
             }
         }
         
