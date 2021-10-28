@@ -5,9 +5,9 @@ pipeline {
         stage('Creating a virtual environment with anaconda') {
             steps {
                 echo "Current workspace is ${env.WORKSPACE}"
-                sh "conda --version"
-                sh "which conda"
-                sh "conda env create --name jenkins_test --file environment.yaml"
+                sh 
+                sh "/data/miniconda/condabin/conda --version"
+                sh "/data/miniconda/condabin/conda env create --name jenkins_test --file environment.yaml"
 
                 //sh "source ${env.WORKSPACE}/build_venv/bin/activate"
                 //sh "python --version" // python is not found
@@ -19,10 +19,10 @@ pipeline {
 
         stage('Test anaconda environment') {
             steps {
-                sh "conda activate jenkins_test"
+                sh "/data/miniconda/condabin/conda activate jenkins_test"
+                sh "/data/miniconda/condabin/conda list"
                 sh "python --version"
                 sh "which python"
-                sh "conda list"
             }
         }
 
