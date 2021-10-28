@@ -29,7 +29,7 @@ pipeline {
     post {
         always {
             echo 'Removing virtual environment'
-            sh "rm ${env.WORKSPACE}/build_venv"
+            sh "rm -r ${env.WORKSPACE}/build_venv"
         }
         success {
             echo 'I succeeded!'
