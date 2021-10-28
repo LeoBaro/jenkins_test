@@ -17,15 +17,19 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'Testing....'
+                sh "source SampleProject/testing/start_test.sh"
             }
         }
         
-        stage('Store artifacts') {
+    
+        stage('Store artifacts') { 
             steps {
-                echo 'Storing artifacts....'
+                junit(testResults: "SampleProject/testing/junit_report.xml", allowEmptyResults: true)
+                archiveArtifacts artifacts: "SampleProject/testing/coverage_report.xml"
             }
         }
+    
     }
 
 
