@@ -8,16 +8,20 @@ pipeline {
                 sh "python3 --version"
                 sh "which python3"
                 sh "python3 -m venv ${env.WORKSPACE}/build_venv"
-                sh ". ${env.WORKSPACE}/build_venv/bin/activate"
-                sh "${env.WORKSPACE}/build_venv/bin/python --version"
+                sh "source ${env.WORKSPACE}/build_venv/bin/activate"
+                sh "python --version"
                 sh "which ${env.WORKSPACE}/build_venv/bin/python"
+                sh "pip install -r requirements.txt"
+                sh "python setup.py develop"
             }
         }
+
         stage('Test') {
             steps {
                 echo 'Testing..'
             }
         }
+        
         stage('Store artifacts') {
             steps {
                 echo 'Storing artifacts....'
