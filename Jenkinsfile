@@ -18,15 +18,15 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing....'
-                sh "source SampleProject/testing/start_test.sh ${env.WORKSPACE}/build_venv"
+                sh "cd SampleProject/testing && source start_test.sh ${env.WORKSPACE}/build_venv"
             }
         }
         
     
         stage('Store artifacts') { 
             steps {
-                junit(testResults: "SampleProject/testing/junit_report.xml", allowEmptyResults: true)
-                archiveArtifacts artifacts: "SampleProject/testing/coverage_report.xml"
+                junit(testResults: "${env.WORKSPACE}/SampleProject/testing/junit_report.xml", allowEmptyResults: true)
+                archiveArtifacts artifacts: "${env.WORKSPACE}/SampleProject/testing/coverage_report.xml"
             }
         }
     
