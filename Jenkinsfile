@@ -9,10 +9,9 @@ pipeline {
                 sh "which python3"
                 sh "python3 -m venv ${env.WORKSPACE}/build_venv"
                 sh "source ${env.WORKSPACE}/build_venv/bin/activate"
-                sh "python --version"
-                sh "which ${env.WORKSPACE}/build_venv/bin/python"
-                sh "pip install -r requirements.txt"
-                sh "python setup.py develop"
+                sh "${env.WORKSPACE}/build_venv/bin/pip install -r requirements.txt"
+                sh "${env.WORKSPACE}/build_venv/bin/python setup.py develop"
+                sh "${env.WORKSPACE}/build_venv/bin/pip list"
             }
         }
 
