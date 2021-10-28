@@ -5,7 +5,6 @@ pipeline {
         stage('Creating a virtual environment with anaconda') {
             steps {
                 echo "Current workspace is ${env.WORKSPACE}"
-                sh 
                 sh "/data/miniconda/condabin/conda --version"
                 sh "/data/miniconda/condabin/conda env create --name jenkins_test --file environment.yaml"
 
