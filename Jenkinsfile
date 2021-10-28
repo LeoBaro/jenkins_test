@@ -8,7 +8,7 @@ pipeline {
                 sh "python3 --version"
                 sh "which python3"
                 sh "python3 -m venv ${env.WORKSPACE}/build_venv"
-                sh "source ${env.WORKSPACE}/build_venv/bin/activate"
+                sh ". ${env.WORKSPACE}/build_venv/bin/activate"
                 sh "python --version"
                 sh "which python"
             }
