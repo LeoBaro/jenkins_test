@@ -6,7 +6,7 @@ pipeline {
             steps {
                 echo "Current workspace is ${env.WORKSPACE}"
                 sh "python3 --version"
-                sh "which python"
+                sh "which python3"
                 sh "python3 -m venv ${env.WORKSPACE}/build_venv"
                 sh "source ${env.WORKSPACE}/build_venv/bin/activate"
                 sh "python --version"
